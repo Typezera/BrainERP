@@ -1,0 +1,5 @@
+spring.application.name=Brain
+spring.datasource.url=//{Sua URL}
+spring.datasource.username=//{seu usuário}
+spring.datasource.password=//{Sua senha}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
