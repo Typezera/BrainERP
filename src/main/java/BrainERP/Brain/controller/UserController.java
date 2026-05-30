@@ -9,9 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RestController
-@RequestMapping("api/users")
+@RequestMapping("api/user")
 public class UserController {
 
     private final UserService userService;
@@ -25,8 +27,13 @@ public class UserController {
             @Valid
             @RequestBody
             UserRequestDto userRequestDto){
-//        var user = userService.CreateAccount(userRequestDto);
-        return ResponseEntity.ok(userService.CreateAccount(userRequestDto));
-//        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        var user = userService.CreateAccount(userRequestDto);
+//        return ResponseEntity.ok(userService.CreateAccount(userRequestDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<UserResponseDto>>getAllUsers(){
+        return ResponseEntity.ok(userService.searchUsers());
     }
 }

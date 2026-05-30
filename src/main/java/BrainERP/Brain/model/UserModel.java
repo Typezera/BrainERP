@@ -24,7 +24,7 @@ public class UserModel {
 
     private String password;
 
-    private boolean isActivate;
+    private boolean activate;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
