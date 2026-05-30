@@ -3,6 +3,9 @@ package BrainERP.Brain.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -20,6 +23,11 @@ public class UserModel {
     private String email;
 
     private String password;
+
+    private boolean isActivate;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
     @Enumerated(EnumType.STRING)
     private UserOrCompany howAreYou;
