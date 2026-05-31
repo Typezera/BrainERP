@@ -1,14 +1,15 @@
 package BrainERP.Brain.service;
 
-import BrainERP.Brain.UserDTOs.UserRequestDto;
-import BrainERP.Brain.UserDTOs.UserResponseDto;
+import BrainERP.Brain.dtos.userDtos.UserPatchDto;
+import BrainERP.Brain.dtos.userDtos.UserRequestDto;
+import BrainERP.Brain.dtos.userDtos.UserResponseDto;
 import BrainERP.Brain.model.UserModel;
 import BrainERP.Brain.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -39,7 +40,42 @@ public class UserService {
                 user.getId(),
                 user.getName(),
                 user.getEmail(),
+                user.getCreatedAt(),
                 user.getHowAreYou()
+        );
+    }
+
+    public List<UserResponseDto>searchUsers(){
+        var users = userRepository.findAllByActivateTrue();
+
+        return users.stream().map(user -> new UserResponseDto(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getCreatedAt(),
+                user.getHowAreYou()
+        ))
+                .toList();
+    }
+
+    public UserResponseDto userPatch(Long id, UserPatchDto userPatchDto){
+        var user = userRepository.findByIdAndActivateTrue(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Usuário não encontrado"
+                ));
+
+        if (userPatchDto.name() != null && !userPatchDto.name().isBlank()){user.setName(userPatchDto.name());}
+        if (userPatchDto.email() != null && !userPatchDto.email().isBlank()){user.setEmail(userPatchDto.email());}
+        if (userPatchDto.password() != null && !userPatchDto.password().isBlank()){user.setPassword(userPatchDto.password());}
+
+        var updatedUser = userRepository.save(user);
+
+        return new UserResponseDto(
+                updatedUser.getId(),
+                updatedUser.getName(),
+                updatedUser.getEmail(),
+                updatedUser.getCreatedAt(),
+                updatedUser.getHowAreYou()
         );
     }
 

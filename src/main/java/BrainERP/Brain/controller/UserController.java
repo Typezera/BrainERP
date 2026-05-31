@@ -1,7 +1,8 @@
 package BrainERP.Brain.controller;
 
-import BrainERP.Brain.UserDTOs.UserRequestDto;
-import BrainERP.Brain.UserDTOs.UserResponseDto;
+import BrainERP.Brain.dtos.userDtos.UserPatchDto;
+import BrainERP.Brain.dtos.userDtos.UserRequestDto;
+import BrainERP.Brain.dtos.userDtos.UserResponseDto;
 import BrainERP.Brain.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -9,9 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RestController
-@RequestMapping("api/users")
+@RequestMapping("api/user")
 public class UserController {
 
     private final UserService userService;
@@ -25,8 +28,21 @@ public class UserController {
             @Valid
             @RequestBody
             UserRequestDto userRequestDto){
-//        var user = userService.CreateAccount(userRequestDto);
-        return ResponseEntity.ok(userService.CreateAccount(userRequestDto));
-//        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        var user = userService.CreateAccount(userRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<UserResponseDto>>getAllUsers(){
+        return ResponseEntity.ok(userService.searchUsers());
+    }
+
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<UserResponseDto>updatedUser(
+            @PathVariable Long id,
+            @RequestBody UserPatchDto userPatchDto
+            ){
+        return ResponseEntity.ok(userService.userPatch(id, userPatchDto));
+    }
+
 }
