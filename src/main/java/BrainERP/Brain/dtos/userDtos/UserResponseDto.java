@@ -1,4 +1,4 @@
-package BrainERP.Brain.UserDTOs;
+package BrainERP.Brain.dtos.userDtos;
 
 import BrainERP.Brain.model.UserOrCompany;
 

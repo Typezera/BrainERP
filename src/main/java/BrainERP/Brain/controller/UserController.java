@@ -1,7 +1,8 @@
 package BrainERP.Brain.controller;
 
-import BrainERP.Brain.UserDTOs.UserRequestDto;
-import BrainERP.Brain.UserDTOs.UserResponseDto;
+import BrainERP.Brain.dtos.userDtos.UserPatchDto;
+import BrainERP.Brain.dtos.userDtos.UserRequestDto;
+import BrainERP.Brain.dtos.userDtos.UserResponseDto;
 import BrainERP.Brain.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,6 @@ public class UserController {
             @RequestBody
             UserRequestDto userRequestDto){
         var user = userService.CreateAccount(userRequestDto);
-//        return ResponseEntity.ok(userService.CreateAccount(userRequestDto));
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
@@ -36,4 +36,13 @@ public class UserController {
     public ResponseEntity<List<UserResponseDto>>getAllUsers(){
         return ResponseEntity.ok(userService.searchUsers());
     }
+
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<UserResponseDto>updatedUser(
+            @PathVariable Long id,
+            @RequestBody UserPatchDto userPatchDto
+            ){
+        return ResponseEntity.ok(userService.userPatch(id, userPatchDto));
+    }
+
 }
