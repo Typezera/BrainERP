@@ -5,6 +5,7 @@ import BrainERP.Brain.dtos.userDtos.UserRequestDto;
 import BrainERP.Brain.dtos.userDtos.UserResponseDto;
 import BrainERP.Brain.service.UserService;
 import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -43,6 +44,14 @@ public class UserController {
             @RequestBody UserPatchDto userPatchDto
             ){
         return ResponseEntity.ok(userService.userPatch(id, userPatchDto));
+    }
+
+    @DeleteMapping("/deactivate/{id}")
+    public ResponseEntity<String>deactivateUser (
+            @PathVariable Long id
+    ){
+        userService.deactivateUser(id);
+        return ResponseEntity.ok("Sua conta foi desativada com sucesso");
     }
 
 }
