@@ -1,12 +1,14 @@
-package BrainERP.Brain.service;
+package BrainERP.Brain.user.service;
 
-import BrainERP.Brain.dtos.userDtos.UserPatchDto;
-import BrainERP.Brain.dtos.userDtos.UserRequestDto;
-import BrainERP.Brain.dtos.userDtos.UserResponseDto;
-import BrainERP.Brain.model.UserModel;
-import BrainERP.Brain.repository.UserRepository;
+
+import BrainERP.Brain.user.dto.UserResponseDto;
+import BrainERP.Brain.user.dto.UserRequestDto;
+import BrainERP.Brain.user.dto.UserPatchDto;
+import BrainERP.Brain.user.model.UserModel;
+import BrainERP.Brain.user.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -77,6 +79,16 @@ public class UserService {
                 updatedUser.getCreatedAt(),
                 updatedUser.getHowAreYou()
         );
+    }
+
+    @Transactional
+    public void deactivateUser(Long id){
+        var user = userRepository.findByIdAndActivateTrue(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Usuario não existe"
+                ));
+
+        user.setActivate(false);
     }
 
 }

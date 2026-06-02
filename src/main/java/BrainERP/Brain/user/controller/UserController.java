@@ -5,7 +5,6 @@ import BrainERP.Brain.user.dto.UserRequestDto;
 import BrainERP.Brain.user.dto.UserResponseDto;
 import BrainERP.Brain.user.service.UserService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
