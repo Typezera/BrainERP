@@ -1,4 +1,4 @@
-package BrainERP.Brain.model;
+package BrainERP.Brain.user.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

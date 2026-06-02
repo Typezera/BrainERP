@@ -1,4 +1,4 @@
-package BrainERP.Brain.model;
+package BrainERP.Brain.user.model;
 
 public enum UserOrCompany {
     USER,

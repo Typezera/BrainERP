@@ -1,6 +1,6 @@
-package BrainERP.Brain.dtos.userDtos;
+package BrainERP.Brain.user.dto;
 
-import BrainERP.Brain.model.UserOrCompany;
+import BrainERP.Brain.user.model.UserOrCompany;
 
 import java.time.LocalDateTime;
 

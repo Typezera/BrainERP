@@ -1,7 +1,7 @@
-package BrainERP.Brain.dtos.userDtos;
+package BrainERP.Brain.user.dto;
 
 
-import BrainERP.Brain.model.UserOrCompany;
+import BrainERP.Brain.user.model.UserOrCompany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

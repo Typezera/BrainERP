@@ -1,4 +1,4 @@
-package BrainERP.Brain.dtos.userDtos;
+package BrainERP.Brain.user.dto;
 
 public record UserPatchDto(
         String name,

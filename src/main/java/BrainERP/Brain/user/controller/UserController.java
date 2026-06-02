@@ -1,9 +1,9 @@
-package BrainERP.Brain.controller;
+package BrainERP.Brain.user.controller;
 
-import BrainERP.Brain.dtos.userDtos.UserPatchDto;
-import BrainERP.Brain.dtos.userDtos.UserRequestDto;
-import BrainERP.Brain.dtos.userDtos.UserResponseDto;
-import BrainERP.Brain.service.UserService;
+import BrainERP.Brain.user.dto.UserPatchDto;
+import BrainERP.Brain.user.dto.UserRequestDto;
+import BrainERP.Brain.user.dto.UserResponseDto;
+import BrainERP.Brain.user.service.UserService;
 import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;

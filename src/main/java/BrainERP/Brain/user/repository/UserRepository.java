@@ -1,6 +1,6 @@
-package BrainERP.Brain.repository;
+package BrainERP.Brain.user.repository;
 
-import BrainERP.Brain.model.UserModel;
+import BrainERP.Brain.user.model.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
