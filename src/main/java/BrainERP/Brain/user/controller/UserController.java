@@ -4,7 +4,6 @@ import BrainERP.Brain.user.dto.UserPatchDto;
 import BrainERP.Brain.user.dto.UserRequestDto;
 import BrainERP.Brain.user.dto.UserResponseDto;
 import BrainERP.Brain.user.query.ListUsersQuery;
-import BrainERP.Brain.user.service.UserService;
 import BrainERP.Brain.user.usecase.CreateUserUseCase;
 import BrainERP.Brain.user.usecase.DeleteUserUseCase;
 import BrainERP.Brain.user.usecase.UpdateUserUseCase;
