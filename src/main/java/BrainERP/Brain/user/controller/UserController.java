@@ -3,6 +3,7 @@ package BrainERP.Brain.user.controller;
 import BrainERP.Brain.user.dto.UserPatchDto;
 import BrainERP.Brain.user.dto.UserRequestDto;
 import BrainERP.Brain.user.dto.UserResponseDto;
+import BrainERP.Brain.user.query.FindByEmailUserQuery;
 import BrainERP.Brain.user.query.FindByIdUserQuery;
 import BrainERP.Brain.user.query.ListUsersQuery;
 import BrainERP.Brain.user.usecase.CreateUserUseCase;
@@ -26,18 +27,21 @@ public class UserController {
     private final DeleteUserUseCase deleteUserUseCase;
     private final ListUsersQuery listUsersQuery;
     private final FindByIdUserQuery findByIdUserQuery;
+    private final FindByEmailUserQuery findByEmailUserQuery;
 
     public UserController(CreateUserUseCase createUserUseCase,
                           UpdateUserUseCase updateUserUseCase,
                           DeleteUserUseCase deleteUserUseCase,
                           ListUsersQuery listUsersQuery,
-                          FindByIdUserQuery findByIdUserQuery)
+                          FindByIdUserQuery findByIdUserQuery,
+                          FindByEmailUserQuery findByEmailUserQuery)
     {
         this.createUserUseCase = createUserUseCase;
         this.updateUserUseCase = updateUserUseCase;
         this.deleteUserUseCase = deleteUserUseCase;
         this.listUsersQuery = listUsersQuery;
         this.findByIdUserQuery = findByIdUserQuery;
+        this.findByEmailUserQuery = findByEmailUserQuery;
     }
 
     @PostMapping("/signup")
@@ -60,6 +64,13 @@ public class UserController {
             @PathVariable Long id
     ){
         return ResponseEntity.ok(findByIdUserQuery.findUserByIdQuery(id));
+    }
+
+    @GetMapping("/search/email/{email}")
+    public ResponseEntity<UserResponseDto>findUserEmail(
+            @PathVariable String email
+    ){
+        return ResponseEntity.ok(findByEmailUserQuery.findUserByEmail(email));
     }
 
     @PatchMapping("/update/{id}")
