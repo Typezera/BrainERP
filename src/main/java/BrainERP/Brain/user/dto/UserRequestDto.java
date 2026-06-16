@@ -15,10 +15,7 @@ public record UserRequestDto(
         String email,
 
         @NotBlank(message = "Campo senha Obrigatório")
-        String password,
-
-        @NotNull(message = "Selecione um valor")
-        UserOrCompany howAreYou
+        String password
 ) {
 
 }
