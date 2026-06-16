@@ -22,8 +22,7 @@ public class FindByIdUserQuery {
                 user.getId(),
                 user.getName(),
                 user.getEmail(),
-                user.getCreatedAt(),
-                user.getHowAreYou()
+                user.getCreatedAt()
         );
     }
 

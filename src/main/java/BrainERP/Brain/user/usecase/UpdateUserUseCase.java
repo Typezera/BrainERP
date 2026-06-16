@@ -61,8 +61,7 @@ public class UpdateUserUseCase {
                 updatedUser.getId(),
                 updatedUser.getName(),
                 updatedUser.getEmail(),
-                updatedUser.getCreatedAt(),
-                updatedUser.getHowAreYou()
+                updatedUser.getCreatedAt()
         );
     }
 

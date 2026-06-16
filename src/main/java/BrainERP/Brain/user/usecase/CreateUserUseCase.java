@@ -28,7 +28,6 @@ public class CreateUserUseCase {
         userModel.setName(userRequestDto.name());
         userModel.setEmail(userRequestDto.email());
         userModel.setPassword(passwordEncoder.encode(userRequestDto.password()));
-        userModel.setHowAreYou(userRequestDto.howAreYou());
         userModel.setActivate(true);
 
         UserModel user = userRepository.save(userModel);
@@ -37,8 +36,7 @@ public class CreateUserUseCase {
                 user.getId(),
                 user.getName(),
                 user.getEmail(),
-                user.getCreatedAt(),
-                user.getHowAreYou()
+                user.getCreatedAt()
         );
     }
 }

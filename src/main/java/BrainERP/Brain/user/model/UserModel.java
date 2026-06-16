@@ -29,8 +29,8 @@ public class UserModel {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @Enumerated(EnumType.STRING)
-    private UserOrCompany howAreYou;
+//    @Enumerated(EnumType.STRING)
+//    private UserOrCompany howAreYou;
 
 
 }
