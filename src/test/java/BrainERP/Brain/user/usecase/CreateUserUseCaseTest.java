@@ -14,8 +14,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.web.server.ResponseStatusException;
+
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Optional;
@@ -70,6 +73,29 @@ public class CreateUserUseCaseTest {
         verify(passwordEncoder).encode(dto.password());
         verify(userRepository).save(any(UserModel.class));
     }
+
+    @Test
+    @DisplayName("shows that the email is not empty")
+    void shouldEmailIsNotEmpty(){
+        UserRequestDto dto = new UserRequestDto(
+                "Willian",
+                "willian@teste.com",
+                "9876543"
+        );
+
+        UserModel data = new UserModel();
+        data.setId(1L);
+        data.setName(dto.name());
+        data.setEmail(dto.email());
+
+        when(userRepository.findByEmail(dto.email()))
+                .thenReturn(Optional.of(data));
+
+        assertThatThrownBy(() -> createUserUseCase.createAccount(dto))
+                .isInstanceOf(ResponseStatusException.class);
+    }
+
+
 
 //    private UserModel createAccountTest(UserRequestDto userRequestDto){
 //        UserModel newUser = new UserModel(userRequestDto);
