@@ -95,11 +95,4 @@ public class CreateUserUseCaseTest {
                 .isInstanceOf(ResponseStatusException.class);
     }
 
-
-
-//    private UserModel createAccountTest(UserRequestDto userRequestDto){
-//        UserModel newUser = new UserModel(userRequestDto);
-//        this.entityManager.persist(newUser);
-//        return newUser;
-//    }
 }
