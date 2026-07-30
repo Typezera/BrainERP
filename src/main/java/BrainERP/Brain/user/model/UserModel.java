@@ -34,6 +34,9 @@ public class UserModel {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @Enumerated(EnumType.STRING)
+    private UserOrCompany accountType = UserOrCompany.USER;
+
 //    @Enumerated(EnumType.STRING)
 //    private UserOrCompany howAreYou;
 

@@ -3,7 +3,7 @@ package BrainERP.Brain.auth.usecase;
 
 import BrainERP.Brain.auth.dto.LoginRequestDTO;
 import BrainERP.Brain.auth.dto.LoginResponseDTO;
-import BrainERP.Brain.user.security.SecurityUser;
+import BrainERP.Brain.auth.security.SecurityUser;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.oauth2.jwt.JwsHeader;

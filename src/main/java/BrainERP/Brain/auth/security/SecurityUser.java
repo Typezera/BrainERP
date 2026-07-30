@@ -1,14 +1,15 @@
-package BrainERP.Brain.user.security;
+package BrainERP.Brain.auth.security;
 
-import BrainERP.Brain.config.SecurityConfig;
+import BrainERP.Brain.auth.AuthInterface.AuthPrincipal;
 import BrainERP.Brain.user.model.UserModel;
+import BrainERP.Brain.user.model.UserOrCompany;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 
-public class SecurityUser implements UserDetails {
+public class SecurityUser implements UserDetails, AuthPrincipal {
 
     private final UserModel user;
 
@@ -18,7 +19,7 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public String getUsername(){
-        return user.getEmail();
+        return user.getName();
     }
 
     @Override
@@ -51,4 +52,18 @@ public class SecurityUser implements UserDetails {
         return user.getPassword();
     }
 
+    @Override
+    public Long getId() {
+        return user.getId();
+    }
+
+    @Override
+    public String getEmail() {
+        return user.getEmail();
+    }
+
+    @Override
+    public UserOrCompany getAccountType() {
+        return user.getAccountType();
+    }
 }

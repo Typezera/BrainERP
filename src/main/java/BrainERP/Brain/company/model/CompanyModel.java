@@ -1,5 +1,6 @@
 package BrainERP.Brain.company.model;
 
+import BrainERP.Brain.user.model.UserOrCompany;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +23,9 @@ public class CompanyModel {
 
     private String name;
 
+    @Column(nullable = false)
+    private String password;
+
     @Column(unique = true)
     private String email;
 
@@ -30,6 +34,9 @@ public class CompanyModel {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @Enumerated(EnumType.STRING)
+    private UserOrCompany accountType = UserOrCompany.COMPANY;
 
     private boolean activateCompany;
 }
