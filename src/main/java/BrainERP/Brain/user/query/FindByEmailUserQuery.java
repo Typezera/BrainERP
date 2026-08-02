@@ -24,6 +24,7 @@ public class FindByEmailUserQuery {
                 user.getId(),
                 user.getName(),
                 user.getEmail(),
+                user.getHowAreYou(),
                 user.getCreatedAt()
         );
 

@@ -3,6 +3,7 @@ package BrainERP.Brain.user.usecase;
 import BrainERP.Brain.user.dto.UserRequestDto;
 import BrainERP.Brain.user.dto.UserResponseDto;
 import BrainERP.Brain.user.model.UserModel;
+import BrainERP.Brain.user.model.UserOrCompany;
 import BrainERP.Brain.user.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +29,7 @@ public class CreateUserUseCase {
         userModel.setName(userRequestDto.name());
         userModel.setEmail(userRequestDto.email());
         userModel.setPassword(passwordEncoder.encode(userRequestDto.password()));
+        userModel.setHowAreYou(UserOrCompany.USER);
         userModel.setActivate(true);
 
         UserModel user = userRepository.save(userModel);
@@ -36,6 +38,7 @@ public class CreateUserUseCase {
                 user.getId(),
                 user.getName(),
                 user.getEmail(),
+                user.getHowAreYou(),
                 user.getCreatedAt()
         );
     }

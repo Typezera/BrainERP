@@ -25,6 +25,8 @@ public class SignInUseCase {
     }
 
     public LoginResponseDTO execute(LoginRequestDTO requestDTO){
+
+        System.out.println("Entrou no SignInUseCase");
         var  authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         requestDTO.email(),

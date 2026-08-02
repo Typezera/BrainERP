@@ -16,6 +16,7 @@ public record UserRequestDto(
 
         @NotBlank(message = "Campo senha Obrigatório")
         String password
+
 ) {
 
 }

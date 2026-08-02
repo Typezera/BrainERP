@@ -35,10 +35,7 @@ public class UserModel {
     private LocalDateTime createdAt;
 
     @Enumerated(EnumType.STRING)
-    private UserOrCompany accountType = UserOrCompany.USER;
-
-//    @Enumerated(EnumType.STRING)
-//    private UserOrCompany howAreYou;
+    private UserOrCompany howAreYou;
 
     public UserModel(UserRequestDto data){
         this.name = data.name();

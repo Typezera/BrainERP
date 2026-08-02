@@ -8,6 +8,7 @@ public record UserResponseDto(
         Long id,
         String name,
         String email,
+        UserOrCompany howAreYou,
         LocalDateTime createdAt
 ) {
 }

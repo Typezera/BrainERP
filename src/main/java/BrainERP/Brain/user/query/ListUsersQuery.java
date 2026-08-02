@@ -21,6 +21,7 @@ public class ListUsersQuery {
                         user.getId(),
                         user.getName(),
                         user.getEmail(),
+                        user.getHowAreYou(),
                         user.getCreatedAt()
                 ))
                 .toList();
