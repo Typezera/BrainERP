@@ -24,7 +24,7 @@ public class SecurityCompany implements UserDetails, AuthPrincipal {
 
     @Override
     public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
+        return true;
     }
 
     @Override
@@ -63,7 +63,8 @@ public class SecurityCompany implements UserDetails, AuthPrincipal {
     }
 
     @Override
-    public UserOrCompany getAccountType() {
-        return company.getAccountType();
+    public UserOrCompany getHowAreYou() {
+        return company.getHowAreYou();
     }
+
 }

@@ -36,7 +36,7 @@ public class CompanyModel {
     private LocalDateTime createdAt;
 
     @Enumerated(EnumType.STRING)
-    private UserOrCompany accountType = UserOrCompany.COMPANY;
+    private UserOrCompany howAreYou = UserOrCompany.COMPANY;
 
     private boolean activateCompany;
 }

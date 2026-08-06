@@ -63,7 +63,7 @@ public class SecurityUser implements UserDetails, AuthPrincipal {
     }
 
     @Override
-    public UserOrCompany getAccountType() {
+    public UserOrCompany getHowAreYou() {
         return user.getHowAreYou();
     }
 }

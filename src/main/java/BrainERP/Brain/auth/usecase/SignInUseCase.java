@@ -1,9 +1,9 @@
 package BrainERP.Brain.auth.usecase;
 
 
+import BrainERP.Brain.auth.AuthInterface.AuthPrincipal;
 import BrainERP.Brain.auth.dto.LoginRequestDTO;
 import BrainERP.Brain.auth.dto.LoginResponseDTO;
-import BrainERP.Brain.auth.security.SecurityUser;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.oauth2.jwt.JwsHeader;
@@ -35,10 +35,12 @@ public class SignInUseCase {
         );
 
         var now = Instant.now();
-        var securityUser = (SecurityUser) authentication.getPrincipal();
+        var principal = (AuthPrincipal) authentication.getPrincipal();
 
         var claims = JwtClaimsSet.builder()
-                .subject(securityUser.getUsername())
+                .subject(principal.getEmail())
+                .claim("id", principal.getId())
+                .claim("accountType", principal.getHowAreYou().name())
                 .issuedAt(now)
                 .expiresAt(now.plusSeconds(3600))
                 .build();

@@ -5,5 +5,5 @@ import BrainERP.Brain.user.model.UserOrCompany;
 public interface AuthPrincipal {
     Long getId();
     String getEmail();
-    UserOrCompany getAccountType();
+    UserOrCompany getHowAreYou();
 }

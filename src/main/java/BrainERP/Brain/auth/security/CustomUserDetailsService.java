@@ -23,18 +23,14 @@ public class CustomUserDetailsService implements UserDetailsService {
         var user = userRepository.findByEmailAndActivateTrue(email);
 
         if(user.isPresent()){
-            System.out.println("Encontrou o usuário");
             return new SecurityUser(user.get());
         }
 
         var company = companyRepository.findByEmailAndActivateTrue(email);
 
         if(company.isPresent()){
-            System.out.println("Encontrou a compania");
             return new SecurityCompany(company.get());
         }
-
-        System.out.println("Não encontrou nenhuma conta");
 
         throw new UsernameNotFoundException("Usuário ou empresa não encontrados");
     }
