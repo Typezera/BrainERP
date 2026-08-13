@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CompanyRepository extends JpaRepository<UserModel, Long> {
+public interface CompanyRepository extends JpaRepository<CompanyModel, Long> {
     Optional<CompanyModel>findByEmail(String email);
     Optional<CompanyModel>findByEmailAndActivateTrue(String email);
     List<CompanyModel>findAllByActivateTrue();

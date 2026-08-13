@@ -38,5 +38,5 @@ public class CompanyModel {
     @Enumerated(EnumType.STRING)
     private UserOrCompany howAreYou = UserOrCompany.COMPANY;
 
-    private boolean activateCompany;
+    private boolean activate;
 }

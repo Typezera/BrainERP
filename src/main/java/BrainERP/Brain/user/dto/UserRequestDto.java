@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record UserRequestDto(
-        @NotBlank(message = "Campo nome Obrigatório")
+        @NotBlank(message = "Campo name Obrigatório")
         String name,
 
         @NotBlank(message = "Campo email Obrigatório")

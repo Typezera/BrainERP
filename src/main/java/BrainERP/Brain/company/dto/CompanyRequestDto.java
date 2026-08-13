@@ -5,8 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 public record CompanyRequestDto(
-        @NotBlank(message = "Informe o nome da empresa")
-        String nome,
+        @NotBlank(message = "Informe o name da empresa")
+        String name,
         @NotBlank(message = "Informe o email da empresa")
         @Email(message = "Formato de Email inválido")
         String email,

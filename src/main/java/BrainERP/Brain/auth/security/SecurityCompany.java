@@ -39,7 +39,7 @@ public class SecurityCompany implements UserDetails, AuthPrincipal {
 
     @Override
     public boolean isEnabled() {
-        return company.isActivateCompany();
+        return company.isActivate();
     }
 
     @Override
