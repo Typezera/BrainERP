@@ -1,4 +1,4 @@
-package BrainERP.Brain.company.controller;
+package BrainERP.Brain.company.controller.company;
 
 
 import BrainERP.Brain.company.dto.CompanyRequestDto;
