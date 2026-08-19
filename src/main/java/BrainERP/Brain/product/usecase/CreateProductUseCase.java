@@ -1,6 +1,7 @@
 package BrainERP.Brain.product.usecase;
 
 
+import BrainERP.Brain.company.service.CompanySecurityService;
 import BrainERP.Brain.product.dto.ProductRequestDto;
 import BrainERP.Brain.product.dto.ProductResponseDto;
 import BrainERP.Brain.product.model.ProductModel;
@@ -12,9 +13,11 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 public class CreateProductUseCase {
     final ProductRepository productRepository;
+    final CompanySecurityService companySecurityService;
 
-    public CreateProductUseCase (ProductRepository productRepository){
+    public CreateProductUseCase (ProductRepository productRepository, CompanySecurityService companySecurityService){
         this.productRepository = productRepository;
+        this.companySecurityService = companySecurityService;
     }
 
 
@@ -25,6 +28,7 @@ public class CreateProductUseCase {
                             HttpStatus.BAD_REQUEST, "Esse produto já foi cadastrado."
                     );
                 });
+        var company = companySecurityService.getLoggedCompany();
 
         ProductModel product = new ProductModel();
         product.setName(productRequestDto.name());
@@ -32,6 +36,7 @@ public class CreateProductUseCase {
         product.setStockQuantity(productRequestDto.stockQuantity());
         product.setPrice(productRequestDto.price());
         product.setActivate(true);
+        product.setCompany(company);
 
         ProductModel prod = productRepository.save(product);
 
