@@ -28,6 +28,13 @@ public class UpdateProductUseCase {
 
         var comp = companySecurityService.getLoggedCompany();
 
+        if (!prod.getCompany().getId().equals(comp.getId())){
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    "Você não tem permissão para alterar este produto."
+            );
+        }
+
         prod.setName(prodRequest.name());
         prod.setDescription(prodRequest.description());
         prod.setStockQuantity(prodRequest.stockQuantity());
