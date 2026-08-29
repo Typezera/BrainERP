@@ -30,7 +30,8 @@ public class SecurityConfig {
                                 "/api/user/signup",
                                 "/api/user/signin",
                                 "/api/company/signup",
-                                "/api/company/signin"
+                                "/api/company/signin",
+                                "/api/company/reactivate/*"
 
                         ).permitAll()
                         .anyRequest().authenticated()
