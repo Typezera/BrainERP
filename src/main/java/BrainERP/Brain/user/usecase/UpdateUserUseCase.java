@@ -4,6 +4,7 @@ import BrainERP.Brain.user.dto.UserPatchDto;
 import BrainERP.Brain.user.dto.UserResponseDto;
 import BrainERP.Brain.user.model.UserModel;
 import BrainERP.Brain.user.repository.UserRepository;
+import BrainERP.Brain.user.service.UserSecurityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,16 @@ import org.springframework.web.server.ResponseStatusException;
 public class UpdateUserUseCase {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserSecurityService userSecurityService;
 
-    public UpdateUserUseCase(UserRepository userRepository, PasswordEncoder passwordEncoder){
+    public UpdateUserUseCase(
+            UserRepository userRepository,
+            PasswordEncoder passwordEncoder,
+            UserSecurityService userSecurityService
+        ){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userSecurityService = userSecurityService;
     }
 
     public UserResponseDto userPatch(Long id, UserPatchDto userPatchDto){
@@ -24,6 +31,8 @@ public class UpdateUserUseCase {
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Usuário não encontrado"
                 ));
+
+        userSecurityService.checkRealUser(user);
 
         return appyPatch(user, userPatchDto);
     }
