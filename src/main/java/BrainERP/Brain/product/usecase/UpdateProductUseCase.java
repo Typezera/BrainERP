@@ -26,14 +26,7 @@ public class UpdateProductUseCase {
                         "Produto não encontrado"
                 ));
 
-        var comp = companySecurityService.getLoggedCompany();
-
-        if (!prod.getCompany().getId().equals(comp.getId())){
-            throw new ResponseStatusException(
-                    HttpStatus.FORBIDDEN,
-                    "Você não tem permissão para alterar este produto."
-            );
-        }
+        companySecurityService.checkRealCompany(prod.getCompany());
 
         prod.setName(prodRequest.name());
         prod.setDescription(prodRequest.description());

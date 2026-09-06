@@ -25,14 +25,7 @@ public class DeleteProductUseCase {
                         "Produto não cadastrado."
                 ));
 
-        var comp = companySecurityService.getLoggedCompany();
-
-        if (!prod.getCompany().getId().equals(comp.getId())){
-            throw new ResponseStatusException(
-                    HttpStatus.FORBIDDEN,
-                    "Você não tem permissão para REMOVER este produto."
-            );
-        }
+        companySecurityService.checkRealCompany(prod.getCompany());
 
         productRepository.deleteById(prod.getId());
 

@@ -44,4 +44,17 @@ public class CompanySecurityService {
                         "Empresa não encontrada"
                 ));
     }
+
+    public void checkRealCompany(CompanyModel company){
+        var compLogged = getLoggedCompany();
+
+        if (!company.getId().equals(compLogged.getId())){
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    "Você não tem permissão para fazer isso"
+            );
+        }
+    }
+
+
 }

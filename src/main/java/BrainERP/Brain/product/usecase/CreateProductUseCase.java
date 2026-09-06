@@ -30,6 +30,7 @@ public class CreateProductUseCase {
                 });
         var company = companySecurityService.getLoggedCompany();
 
+
         ProductModel product = new ProductModel();
         product.setName(productRequestDto.name());
         product.setDescription(productRequestDto.description());

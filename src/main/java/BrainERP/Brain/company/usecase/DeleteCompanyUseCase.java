@@ -31,14 +31,7 @@ public class DeleteCompanyUseCase {
                         "Compania não encontrada."
                 ));
 
-        var comp = companySecurityService.getLoggedCompany();
-
-        if (!company.getId().equals(comp.getId())){
-            throw new ResponseStatusException(
-                    HttpStatus.FORBIDDEN,
-                    "Você não tem permissão para DESATIVAR está conta."
-            );
-        }
+        companySecurityService.checkRealCompany(company);
 
         company.setActivate(false);
 
