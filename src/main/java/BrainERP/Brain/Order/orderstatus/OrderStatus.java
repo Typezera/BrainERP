@@ -1,4 +1,4 @@
-package BrainERP.Brain.Order.ordertypes;
+package BrainERP.Brain.Order.orderstatus;
 
 public enum OrderStatus {
     PENDING,
