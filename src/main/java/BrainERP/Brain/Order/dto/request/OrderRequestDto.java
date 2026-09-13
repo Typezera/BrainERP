@@ -1,4 +1,4 @@
-package BrainERP.Brain.Order.dto;
+package BrainERP.Brain.Order.dto.request;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;

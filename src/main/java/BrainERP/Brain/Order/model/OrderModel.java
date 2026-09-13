@@ -41,4 +41,9 @@ public class OrderModel {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    public void addItem(OrderItemModel item){
+        items.add(item);
+        item.setOrder(this);
+    }
 }

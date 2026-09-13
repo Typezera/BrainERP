@@ -17,7 +17,7 @@ public class UserSecurityService {
         this.userRepository = userRepository;
     }
 
-    private UserModel getLoggedUser(){
+    public UserModel getLoggedUser(){
         Authentication authentication =
                 SecurityContextHolder
                         .getContext()

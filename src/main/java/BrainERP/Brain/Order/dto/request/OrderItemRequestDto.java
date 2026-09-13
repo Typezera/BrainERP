@@ -1,11 +1,11 @@
-package BrainERP.Brain.Order.dto;
+package BrainERP.Brain.Order.dto.request;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 public record OrderItemRequestDto(
         @NotNull
-        Long productID,
+        Long productId,
 
         @NotNull
         @Positive
