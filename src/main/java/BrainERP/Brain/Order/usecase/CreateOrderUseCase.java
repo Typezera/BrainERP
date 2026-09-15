@@ -78,6 +78,7 @@ public class CreateOrderUseCase {
                 .stream()
                 .map(item -> new OrderItemResponseDto(
                         item.getProduct().getId(),
+                        item.getProduct().getName(),
                         item.getQuantity(),
                         item.getUnitPrice()
                 ))
