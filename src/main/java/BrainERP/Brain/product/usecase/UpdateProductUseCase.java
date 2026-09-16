@@ -14,7 +14,9 @@ public class UpdateProductUseCase {
     private final ProductRepository productRepository;
     private final CompanySecurityService companySecurityService;
 
-    public UpdateProductUseCase(ProductRepository productRepository, CompanySecurityService companySecurityService){
+    public UpdateProductUseCase(ProductRepository productRepository,
+                                CompanySecurityService companySecurityService
+    ){
         this.productRepository = productRepository;
         this.companySecurityService = companySecurityService;
     }

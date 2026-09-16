@@ -18,8 +18,7 @@ public class FindOrderById {
 
     public FindOrderById(
             OrderRepository orderRepository,
-            UserSecurityService userSecurityService,
-            UserRepository userRepository
+            UserSecurityService userSecurityService
     )
     {
         this.orderRepository = orderRepository;

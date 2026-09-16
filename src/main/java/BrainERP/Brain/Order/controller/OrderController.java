@@ -3,6 +3,7 @@ package BrainERP.Brain.Order.controller;
 import BrainERP.Brain.Order.dto.request.OrderRequestDto;
 import BrainERP.Brain.Order.dto.response.OrderResponseDto;
 import BrainERP.Brain.Order.query.FindOrderById;
+import BrainERP.Brain.Order.query.GetAllOrder;
 import BrainERP.Brain.Order.repository.OrderRepository;
 import BrainERP.Brain.Order.usecase.CreateOrderUseCase;
 import jakarta.validation.Valid;
@@ -11,19 +12,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RestController
 @RequestMapping("api/order")
 public class OrderController {
     private final CreateOrderUseCase createOrderUseCase;
     private final FindOrderById findOrderById;
+    private final GetAllOrder getAllOrder;
 
     public OrderController(
             CreateOrderUseCase createOrderUseCase,
-            FindOrderById findOrderById
+            FindOrderById findOrderById,
+            GetAllOrder getAllOrder
     ){
         this.createOrderUseCase = createOrderUseCase;
         this.findOrderById = findOrderById;
+        this.getAllOrder = getAllOrder;
     }
 
     @PostMapping("/created")
@@ -44,5 +50,10 @@ public class OrderController {
     ){
         var order = findOrderById.findOrderById(id);
         return ResponseEntity.status(HttpStatus.OK).body(order);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<OrderResponseDto>> getAllOrders(){
+        return ResponseEntity.ok(getAllOrder.getAllOrders());
     }
 }
