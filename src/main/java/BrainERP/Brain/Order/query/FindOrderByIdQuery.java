@@ -4,19 +4,17 @@ import BrainERP.Brain.Order.dto.response.OrderItemResponseDto;
 import BrainERP.Brain.Order.dto.response.OrderResponseDto;
 import BrainERP.Brain.Order.model.OrderModel;
 import BrainERP.Brain.Order.repository.OrderRepository;
-import BrainERP.Brain.user.model.UserModel;
-import BrainERP.Brain.user.repository.UserRepository;
 import BrainERP.Brain.user.service.UserSecurityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class FindOrderById {
+public class FindOrderByIdQuery {
     private final OrderRepository orderRepository;
     private final UserSecurityService userSecurityService;
 
-    public FindOrderById(
+    public FindOrderByIdQuery(
             OrderRepository orderRepository,
             UserSecurityService userSecurityService
     )

@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GetAllOrder {
+public class GetAllOrderQuery {
     private final OrderRepository orderRepository;
     private final UserSecurityService userSecurityService;
 
-    public GetAllOrder(
+    public GetAllOrderQuery(
             OrderRepository orderRepository,
             UserRepository userRepository,
             UserSecurityService userSecurityService

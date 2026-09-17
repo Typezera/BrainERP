@@ -1,11 +1,12 @@
 package BrainERP.Brain.Order.controller;
 
 import BrainERP.Brain.Order.dto.request.OrderRequestDto;
+import BrainERP.Brain.Order.dto.request.OrderUpdateDto;
 import BrainERP.Brain.Order.dto.response.OrderResponseDto;
-import BrainERP.Brain.Order.query.FindOrderById;
-import BrainERP.Brain.Order.query.GetAllOrder;
-import BrainERP.Brain.Order.repository.OrderRepository;
+import BrainERP.Brain.Order.query.FindOrderByIdQuery;
+import BrainERP.Brain.Order.query.GetAllOrderQuery;
 import BrainERP.Brain.Order.usecase.CreateOrderUseCase;
+import BrainERP.Brain.Order.usecase.UpdateOrderUseCase;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,17 +20,20 @@ import java.util.List;
 @RequestMapping("api/order")
 public class OrderController {
     private final CreateOrderUseCase createOrderUseCase;
-    private final FindOrderById findOrderById;
-    private final GetAllOrder getAllOrder;
+    private final FindOrderByIdQuery findOrderByIdQuery;
+    private final GetAllOrderQuery getAllOrderQuery;
+    private final UpdateOrderUseCase updateOrderUseCase;
 
     public OrderController(
             CreateOrderUseCase createOrderUseCase,
-            FindOrderById findOrderById,
-            GetAllOrder getAllOrder
+            FindOrderByIdQuery findOrderByIdQuery,
+            GetAllOrderQuery getAllOrderQuery,
+            UpdateOrderUseCase updateOrderUseCase
     ){
         this.createOrderUseCase = createOrderUseCase;
-        this.findOrderById = findOrderById;
-        this.getAllOrder = getAllOrder;
+        this.findOrderByIdQuery = findOrderByIdQuery;
+        this.getAllOrderQuery = getAllOrderQuery;
+        this.updateOrderUseCase = updateOrderUseCase;
     }
 
     @PostMapping("/created")
@@ -48,12 +52,23 @@ public class OrderController {
             @PathVariable
             Long id
     ){
-        var order = findOrderById.findOrderById(id);
+        var order = findOrderByIdQuery.findOrderById(id);
         return ResponseEntity.status(HttpStatus.OK).body(order);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<OrderResponseDto>> getAllOrders(){
-        return ResponseEntity.ok(getAllOrder.getAllOrders());
+        return ResponseEntity.ok(getAllOrderQuery.getAllOrders());
+    }
+
+    @PatchMapping("/company/status/update/{id}")
+    public ResponseEntity<OrderResponseDto> updateOrder(
+            @PathVariable
+            Long id,
+            @RequestBody
+            OrderUpdateDto orderUpdateDto
+    ){
+        var orderUpda = updateOrderUseCase.updateOrderStatus(id, orderUpdateDto);
+        return ResponseEntity.status(HttpStatus.OK).body(orderUpda);
     }
 }
