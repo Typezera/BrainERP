@@ -7,6 +7,7 @@ import BrainERP.Brain.Order.query.FindOrderByIdQuery;
 import BrainERP.Brain.Order.query.GetAllOrderQuery;
 import BrainERP.Brain.Order.usecase.CreateOrderUseCase;
 import BrainERP.Brain.Order.usecase.UpdateOrderUseCase;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.List;
 @Controller
 @RestController
 @RequestMapping("api/order")
+@SecurityRequirement(name = "bearerAuth")
 public class OrderController {
     private final CreateOrderUseCase createOrderUseCase;
     private final FindOrderByIdQuery findOrderByIdQuery;

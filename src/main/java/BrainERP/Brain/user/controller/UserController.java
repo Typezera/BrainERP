@@ -9,6 +9,7 @@ import BrainERP.Brain.user.query.ListUsersQuery;
 import BrainERP.Brain.user.usecase.CreateUserUseCase;
 import BrainERP.Brain.user.usecase.DeleteUserUseCase;
 import BrainERP.Brain.user.usecase.UpdateUserUseCase;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
@@ -54,11 +55,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/all")
     public ResponseEntity<List<UserResponseDto>>getAllUsers(){
         return ResponseEntity.ok(listUsersQuery.searchUsers());
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/search/{id}")
     public ResponseEntity<UserResponseDto>findUserId(
             @PathVariable Long id
@@ -66,6 +69,7 @@ public class UserController {
         return ResponseEntity.ok(findByIdUserQuery.findUserByIdQuery(id));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/search/email/{email}")
     public ResponseEntity<UserResponseDto>findUserEmail(
             @PathVariable String email
@@ -73,6 +77,7 @@ public class UserController {
         return ResponseEntity.ok(findByEmailUserQuery.findUserByEmail(email));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PatchMapping("/update/{id}")
     public ResponseEntity<UserResponseDto>updatedUser(
             @PathVariable Long id,
@@ -81,6 +86,7 @@ public class UserController {
         return ResponseEntity.ok(updateUserUseCase.userPatch(id, userPatchDto));
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @DeleteMapping("/deactivate/{id}")
     public ResponseEntity<String>deactivateUser (
             @PathVariable Long id

@@ -8,6 +8,7 @@ import BrainERP.Brain.product.query.ListProductQuery;
 import BrainERP.Brain.product.usecase.CreateProductUseCase;
 import BrainERP.Brain.product.usecase.DeleteProductUseCase;
 import BrainERP.Brain.product.usecase.UpdateProductUseCase;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import java.util.List;
 @Controller
 @RestController
 @RequestMapping("api/company/product")
+@SecurityRequirement(name = "bearerAuth")
 public class ProductController {
     private final CreateProductUseCase createProductUseCase;
     private final UpdateProductUseCase updateProductUseCase;

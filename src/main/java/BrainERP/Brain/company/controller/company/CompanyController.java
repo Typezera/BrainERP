@@ -9,6 +9,7 @@ import BrainERP.Brain.company.query.ListCompanysQuery;
 import BrainERP.Brain.company.usecase.CreateCompanyUseCase;
 import BrainERP.Brain.company.usecase.DeleteCompanyUseCase;
 import BrainERP.Brain.company.usecase.UpdateActivateCompanyUseCase;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
@@ -56,6 +57,7 @@ public class CompanyController {
         return ResponseEntity.status(HttpStatus.CREATED).body(comp);
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<CompanyResponseDto> deleteCompany(
             @PathVariable Long id
@@ -64,6 +66,7 @@ public class CompanyController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(comp);
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PatchMapping("/reactivate/{email}")
     public ResponseEntity<CompanyResponseDto> reactivateCompany(
             @PathVariable String email
@@ -72,6 +75,7 @@ public class CompanyController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(comp);
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/getId/{id}")
     public ResponseEntity<CompanyResponseDto> getById(
             @PathVariable Long id
@@ -80,6 +84,7 @@ public class CompanyController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(comp);
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/getEmail/{email}")
     public ResponseEntity<CompanyResponseDto> getByEmail(
             @PathVariable String email
@@ -88,6 +93,7 @@ public class CompanyController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(comp);
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/getAll")
     public ResponseEntity<List<CompanyResponseDto>> getAll(){
         return ResponseEntity.ok(listCompanysQuery.getAllCompanys());
