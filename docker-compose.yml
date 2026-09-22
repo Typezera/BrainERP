@@ -1,0 +1,34 @@
+services:
+
+  mysql:
+    image: mysql:8.4
+    container_name: brainerp-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: brainerp
+      MYSQL_USER: brainerp
+      MYSQL_PASSWORD: brainerp123
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - brainerp-network
+
+  app:
+    build: .
+    container_name: brainerp
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/brainerp
+      SPRING_DATASOURCE_USERNAME: brainerp
+      SPRING_DATASOURCE_PASSWORD: brainerp123
+    depends_on:
+      - mysql
+    networks:
+      - brainerp-network
+
+networks:
+  brainerp-network:
+
+volumes:
+  mysql_data:
