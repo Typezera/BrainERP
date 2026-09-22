@@ -80,7 +80,7 @@ O projeto foi desenvolvido com foco em **separação de responsabilidades, segur
 #### Entrar na pasta
    cd Brain
 
-####Gerar o JAR
+#### Gerar o JAR
    mvn clean package
 
 #### Subir aplicação
