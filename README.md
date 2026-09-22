@@ -106,3 +106,26 @@ Uma visão simplificada:
                     ┌─────────────────────┐
                     │       MySQL         │
                     └─────────────────────┘
+
+
+#### Pré-requisitos
+   - Git
+   - Java 21
+   - Maven
+   - Docker
+   - Docker Compose
+
+#### Clonar
+   git clone
+
+#### Entrar na pasta
+   cd Brain
+
+####Gerar o JAR
+   mvn clean package
+
+#### Subir aplicação
+   docker compose up -d --build
+
+#### Acessar
+   http://localhost:8080
