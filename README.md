@@ -89,6 +89,9 @@ O projeto foi desenvolvido com foco em **separação de responsabilidades, segur
 #### Acessar
    http://localhost:8080
 
+#### Para o container
+   docker compose down
+
 ---
 
 # 🏗️ Arquitetura
